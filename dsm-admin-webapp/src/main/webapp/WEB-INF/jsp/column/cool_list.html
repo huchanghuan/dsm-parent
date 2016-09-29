@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<title>剁手猫-CMS后台管理系统</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/fullcalendar.css" />
+<link rel="stylesheet" href="css/matrix-style.css" />
+<link rel="stylesheet" href="css/matrix-media.css" />
+<link rel="stylesheet" href="css/select2.css" />
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/jquery.gritter.css" />
+
+<!--  
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+-->
+<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+<div id="content">
+	<div id="content-header">
+	  <div id="breadcrumb"> <a href="index.php" target="_top" title="首页" class="tip-bottom"><i class="icon-home"></i> 主页</a> <a href="#" class="tip-bottom">商品管理</a> <a href="#" class="current">产品列表</a> </div>
+	</div>
+    
+	<div class="container-fluid">
+		<div class="row-fluid">
+        	<div class="span12">
+            
+              <div class="searching-bar">
+              		
+              	   
+                  <div class="control-group" style="width:230px;">
+                      <label class="control-label">　关键字 :</label>
+                      <div class="controls">
+                          <input type="text" placeholder="输入关键字" style="width:140px;">
+                      </div>
+                  </div>
+                    
+                    
+                    <!--表单组-->
+                    <div class="control-group" style="width:200px;">
+                      <label class="control-label">　　状态 :</label>
+                      <div class="controls">
+                        <select style="width:100px;">
+                            <option>请选择状态</option>
+                            <option>发布中</option>
+                            <option>已下架</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    
+                    <div class="control-group" style="width:400px;">
+                        <label class="control-label">所属类别 :</label>
+                        <div class="controls">
+                            <select class="select_rank1" name="" style="width:100px; float:left;">
+                                <option class="defult" selected value="-1">不限</option>
+                            </select>
+                            <select class="select_rank2" name="" disabled style="width:100px; float:left;">
+                                <option class="defult" selected value="-1">不限</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <div class="controls">
+                            <button class="btn btn-info pull-right">查询</button>
+                        </div>
+                    </div>
+                    
+              </div>
+              
+              
+              <div class="widget-box cool-list-box">
+                  
+                  <div class="widget-title">
+                  	<span class="icon">
+                    	<input type="checkbox" id="title-checkbox" name="title-checkbox">
+                    </span>
+                    
+                    <h5>全选</h5>
+                    
+                    
+                    
+                    <button class="btn pull-right">批量删除</button>
+                    
+                  </div>
+                  
+                  <div class="widget-content nopadding">
+                    <table class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th><i class="icon-resize-vertical"></i></th>
+                          <th>productID</th>
+                          <th>图片</th>
+                          <th>产品名称</th>
+                          <th>分享人</th>
+                          <th>分享时间</th>
+                          <th>一级分类</th>
+                          <th>二级分类</th>
+                          <th>状态</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="checkbox" /></td>
+                          <td>1123</td>
+                          <td><img picID='2131' src="http://a.broadin.cn/multimedia/album/default/97/1423cf0e0eec23df6115ec2564aa57e9.jpg@1e_80w_60h_1c_0i_1o_100Q_1x.jpg"></td>
+                          <td>小K智能插座</td>
+                          <td>王大妈</td>
+                          <td>2015/3/21 20:11</td>
+                          <td>数码</td>
+                          <td>智能硬件</td>
+                          <td>已下架</td>
+                          <td class="center">
+                          	<a href="p_details.html?id=xxx" class="btn btn-primary btn-mini">详情</a>
+                            <a href="javascript:$.SoldOutProduct(668)" class="btn btn-success btn-mini">上架</a>
+                            <a href="javascript:$.deleteProduct(668)" class="btn btn-danger btn-mini">删除</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" /></td>
+                          <td>1123</td>
+                          <td><img picID='2131' src="http://a.broadin.cn/multimedia/album/default/97/1423cf0e0eec23df6115ec2564aa57e9.jpg@1e_80w_60h_1c_0i_1o_100Q_1x.jpg"></td>
+                          <td>小K智能插座</td>
+                          <td>王大妈</td>
+                          <td>2015/3/21 20:11</td>
+                          <td>数码</td>
+                          <td>智能硬件</td>
+                          <td>发布中</td>
+                          <td class="center">
+                          	<a href="p_details.html?id=xxx" class="btn btn-primary btn-mini">详情</a>
+                            <a href="javascript:$.SoldOutProduct(668)" class="btn btn-warning btn-mini">下架</a>
+                            <a href="javascript:$.deleteProduct(668)" class="btn btn-danger btn-mini">删除</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" /></td>
+                          <td>1123</td>
+                          <td><img picID='2131' src="http://a.broadin.cn/multimedia/album/default/97/1423cf0e0eec23df6115ec2564aa57e9.jpg@1e_80w_60h_1c_0i_1o_100Q_1x.jpg"></td>
+                          <td>小K智能插座</td>
+                          <td>王大妈</td>
+                          <td>2015/3/21 20:11</td>
+                          <td>数码</td>
+                          <td>智能硬件</td>
+                          <td>发布中</td>
+                          <td class="center">
+                          	<a href="p_details.html?id=xxx" class="btn btn-primary btn-mini">详情</a>
+                            <a href="javascript:$.SoldOutProduct(668)" class="btn btn-warning btn-mini">下架</a>
+                            <a href="javascript:$.deleteProduct(668)" class="btn btn-danger btn-mini">删除</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" /></td>
+                          <td>1123</td>
+                          <td><img picID='2131' src="http://a.broadin.cn/multimedia/album/default/97/1423cf0e0eec23df6115ec2564aa57e9.jpg@1e_80w_60h_1c_0i_1o_100Q_1x.jpg"></td>
+                          <td>小K智能插座</td>
+                          <td>王大妈</td>
+                          <td>2015/3/21 20:11</td>
+                          <td>数码</td>
+                          <td>智能硬件</td>
+                          <td>发布中</td>
+                          <td class="center">
+                          	<a href="p_details.html?id=xxx" class="btn btn-primary btn-mini">详情</a>
+                            <a href="javascript:$.SoldOutProduct(668)" class="btn btn-warning btn-mini">下架</a>
+                            <a href="javascript:$.deleteProduct(668)" class="btn btn-danger btn-mini">删除</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" /></td>
+                          <td>1123</td>
+                          <td><img picID='2131' src="http://a.broadin.cn/multimedia/album/default/97/1423cf0e0eec23df6115ec2564aa57e9.jpg@1e_80w_60h_1c_0i_1o_100Q_1x.jpg"></td>
+                          <td>小K智能插座</td>
+                          <td>王大妈</td>
+                          <td>2015/3/21 20:11</td>
+                          <td>数码</td>
+                          <td>智能硬件</td>
+                          <td>发布中</td>
+                          <td class="center">
+                          	<a href="p_details.html?id=xxx" class="btn btn-primary btn-mini">详情</a>
+                            <a href="javascript:$.SoldOutProduct(668)" class="btn btn-warning btn-mini">下架</a>
+                            <a href="javascript:$.deleteProduct(668)" class="btn btn-danger btn-mini">删除</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                    <!------分页------>
+                      <div class="pagination alternate table-pagination">
+                            <ul>
+                                <li class="disabled"><a href="#">首页</a></li>
+                                <li class="disabled"><a href="#">上一页</a></li>
+                                <li class="active"> <a href="#">1</a> </li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">下一页</a></li>
+                                <li><a href="#">尾页</a></li>
+                            </ul>
+                        </div><!------分页-END----->
+                    
+                  </div>
+                  
+                </div>
+                
+            </div>
+        </div>
+	</div>
+</div>
+
+<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.ui.custom.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.uniform.js"></script> 
+<script src="js/jquery.livequery.js"></script> 
+<script src="js/select2.min.js"></script> 
+
+<!---------------分类三联动--------------------->
+<script src="data/classArr.js"></script> 
+<script src="js/classSelect.js"></script>
+<!---------------分类三联动-END----------------->
+
+<script src="uploadify-pic/js/zyFile.js"></script>
+<script src="uploadify-pic/js/zyUpload.js"></script>
+
+<script src="js/iwk.js"></script> 
+<script type="text/javascript">
+
+$(function(){
+	
+	$("#title-checkbox").toggle(function(){
+		$(".table td input[type=checkbox]").attr("checked","checked");
+	},function(){
+		$(".table td input[type=checkbox]").removeAttr("checked");
+	});
+	
+	
+	
+	
+});
+
+$.extend({
+	//下架
+	SoldOutProduct: function(_id){
+		alert(_id);
+	},
+	//发布/上架
+	soldInProduct: function(_id){
+		alert(_id);
+	},
+	//删除
+	deleteProduct: function(_id){
+		alert(_id);
+	}
+});
+
+</script>
+</body>
+</html>

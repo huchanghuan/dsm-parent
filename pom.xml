@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.iwancool</groupId>
+  <artifactId>dsm-parent</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+
+  <name>dsm-parent</name>
+  <url>http://maven.apache.org</url>
+
+ <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<com.iwancool.dsm.version>1.0.0</com.iwancool.dsm.version>
+		
+		<junit.version>4.11</junit.version>
+
+		<org.springframework.version>3.2.5.RELEASE</org.springframework.version>
+		<org.aspectj.aspectjweaver.version>1.7.4</org.aspectj.aspectjweaver.version>
+
+		<mysql.connector.verison>5.1.25</mysql.connector.verison>
+		<com.alibaba.druid.version>1.0.3</com.alibaba.druid.version>
+		<com.alibaba.fastjson.version>1.1.41</com.alibaba.fastjson.version>
+		<org.hibernate.version>4.2.2.Final</org.hibernate.version>
+		<javax.validation.api.version>1.1.0.Final</javax.validation.api.version>
+		<org.hibernate.validator.version>4.2.0.Final</org.hibernate.validator.version>
+
+		<org.apache.commons-io.version>2.4</org.apache.commons-io.version>
+		<org.apache.commons-fileupload.version>1.3.1</org.apache.commons-fileupload.version>
+		<org.apache.commons-logging.version>1.2</org.apache.commons-logging.version>
+		<org.apache.httpclient.version>4.4.1</org.apache.httpclient.version>
+		<commons.codec.version>1.5</commons.codec.version>
+		<commons.net.version>3.3</commons.net.version>
+
+		<org.slf4j.slf4j-log4j12.version>1.7.5</org.slf4j.slf4j-log4j12.version>
+		<log4j.version>1.2.17</log4j.version>
+
+		<servlet.api.version>2.5</servlet.api.version>
+		<jsp.api.version>2.2.1-b03</jsp.api.version>
+		<jstl.version>1.1.2</jstl.version>
+		<taglibs.version>1.1.2</taglibs.version>
+		
+		<com.github.stuxuhai.jpinyin.version>1.1.7</com.github.stuxuhai.jpinyin.version>
+
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<inherited>true</inherited>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>tomcat-maven-plugin</artifactId>
+					<configuration>
+						<server>myserver</server>
+						<url>http://localhost:8080/manager/html</url>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>ibiblio-repository</id>
+			<name>ibiblio-repository</name>
+			<url>http://mirrors.ibiblio.org/pub/mirrors/maven2</url>
+		</repository>
+		<repository>
+			<id>jboss-repository</id>
+			<name>jboss-repository</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>External Release Repository</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
+		</repository>
+	</repositories>
+
+	<dependencyManagement>
+		<dependencies>
+		
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			
+			<!--依赖模块  -->
+			<dependency>
+				<groupId>com.iwancool</groupId>
+				<artifactId>dsm-controller</artifactId>
+				<version>${com.iwancool.dsm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.iwancool</groupId>
+				<artifactId>dsm-service</artifactId>
+				<version>${com.iwancool.dsm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.iwancool</groupId>
+				<artifactId>dsm-dao</artifactId>
+				<version>${com.iwancool.dsm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.iwancool</groupId>
+				<artifactId>dsm-domain</artifactId>
+				<version>${com.iwancool.dsm.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.iwancool</groupId>
+				<artifactId>dsm-utils</artifactId>
+				<version>${com.iwancool.dsm.version}</version>
+			</dependency>
+			
+			<!-- spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-oxm</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${org.springframework.version}</version>
+			</dependency>
+			
+			
+
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${org.aspectj.aspectjweaver.version}</version>
+			</dependency>
+
+			<!-- hibernate -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${org.hibernate.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-ehcache</artifactId>
+				<version>${org.hibernate.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>${javax.validation.api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${org.hibernate.validator.version}</version>
+			</dependency>
+
+			<!-- mysql -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.connector.verison}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>${com.alibaba.druid.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${com.alibaba.fastjson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${org.slf4j.slf4j-log4j12.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${org.slf4j.slf4j-log4j12.version}</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>log4j</groupId>
+			    <artifactId>log4j</artifactId>
+			    <version>${log4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${org.apache.commons-io.version}</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>commons-logging</groupId>
+			    <artifactId>commons-logging</artifactId>
+			    <version>${org.apache.commons-logging.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+				<version>${commons.net.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>${org.apache.commons-fileupload.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${org.apache.httpclient.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpmime</artifactId>
+				<version>${org.apache.httpclient.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commons.codec.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${jstl.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>taglibs</groupId>
+				<artifactId>standard</artifactId>
+				<version>${taglibs.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${jsp.api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${servlet.api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			
+			<dependency>
+			    <groupId>com.github.stuxuhai</groupId>
+			    <artifactId>jpinyin</artifactId>
+			    <version>${com.github.stuxuhai.jpinyin.version}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+  
+  
+  <modules>
+    <module>dsm-admin-webapp</module>
+    <module>dsm-domain</module>
+    <module>dsm-dao</module>
+    <module>dsm-controller</module>
+    <module>dsm-service</module>
+    <module>dsm-utils</module>
+  </modules>
+</project>

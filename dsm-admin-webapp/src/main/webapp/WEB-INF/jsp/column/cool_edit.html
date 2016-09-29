@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<title>剁手猫-CMS后台管理系统</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/fullcalendar.css" />
+<link rel="stylesheet" href="css/matrix-style.css" />
+<link rel="stylesheet" href="css/matrix-media.css" />
+<link rel="stylesheet" href="css/select2.css" />
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/jquery.gritter.css" />
+<link rel="stylesheet" href="css/ladda-themeless.min.css">
+<link rel="stylesheet" href="uploadify-pic/css/zyUpload.css" type="text/css">
+<!--  
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+-->
+<link rel="stylesheet" href="css/style.css" />
+
+
+<script type="text/javascript" charset="utf-8" src="editor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="editor/ueditor.all.min.js"> </script>
+</head>
+
+<body>
+<div id="content">
+	<div id="content-header">
+	  <div id="breadcrumb"> <a href="index.html" target="_top" title="首页" class="tip-bottom"><i class="icon-home"></i> 主页</a> <a href="#" class="tip-bottom">商品管理</a> <a href="#" class="current">编辑产品信息</a> </div>
+	</div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="widget-box news-add-box">
+            <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+              <h5>产品信息</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <form action="#" method="post" class="form-horizontal" onSubmit="return false">
+                    <div class="control-group">
+                        <label class="control-label">产品标题 :</label>
+                        <div class="controls">
+                        	<input id="name" type="text" class="span11" placeholder="请输入产品名称" />
+                        	<span class="help-inline"></span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">产品价格 :</label>
+                        <div class="controls">
+                        	<input id="price" type="text" class="span3" placeholder="请输入产品价格" />
+                        	<span class="help-inline">￥300.00 / $300.00</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">产品网址 :</label>
+                        <div class="controls">
+                        	<input id="source" type="text" class="span11" placeholder="http://" />
+                        	<span class="help-inline"></span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">购买方式 :</label>
+                        <div class="controls">
+                        	<select id="buy" style="width:120px;">
+                                <option value="1">网购</option>
+                                <option value="2">海淘</option>
+                                <option value="3">预订</option>
+                            </select>
+                        	<span class="help-inline"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group" >
+                      <label class="control-label">发货地点 :</label>
+                      <div class="controls">
+                        <div class="city_select">
+                            <select id="prov" class="prov"></select> 
+                            <select id="city" class="city" disabled="disabled"></select>
+                            <select id="dist" class="dist" disabled="disabled"></select>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    
+                    <div class="control-group">
+                        <label class="control-label">一句话的描述 :</label>
+                        <div class="controls">
+                        	<input id="describe" type="text" class="span11" placeholder="一句话的描述" />
+                        	<span class="help-inline"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">所属类别 :</label>
+                        <div class="controls">
+                            <select class="select_rank1" name="" style="width:100px; float:left;">
+                                <option class="defult" selected value="-1">不限</option>
+                            </select>
+                            <select class="select_rank2" name="" disabled style="width:100px; float:left;">
+                                <option class="defult" selected value="-1">不限</option>
+                            </select>
+                            <select class="select_rank3" name="" disabled style="width:100px; float:left;">
+                                <option class="defult" selected value="-1">不限</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                   
+                    <div class="control-group">
+                        <label class="control-label">上传图片 :</label>
+                        <div class="controls">
+                        	<div class="oldpic clearfix">
+                                <ul>
+                                    <li><img picID='2131' src="http://a.broadin.cn/multimedia/album/default/97/b1e5d490c14326b52249975d590bda91.jpg@1e_120w_95h_1c_0i_1o_100Q_1x.jpg"></li>
+                                    <li><img picID='1231' src="http://a.broadin.cn/multimedia/album/default/97/0b77b4f5b46b5c24d7dd6f14fabd4b9c.jpg@1e_120w_95h_1c_0i_1o_100Q_1x.jpg"></li>
+                                    <li><img picID='21231' src="http://a.broadin.cn/multimedia/album/default/97/1423cf0e0eec23df6115ec2564aa57e9.jpg@1e_120w_95h_1c_0i_1o_100Q_1x.jpg"></li>
+                                    <li><img picID='21231231' src="http://a.broadin.cn/multimedia/album/default/97/173c548e34bcdcca655f167c93dea7bc.jpg@1e_120w_95h_1c_0i_1o_100Q_1x.jpg"></li>
+                                </ul>
+                        	</div>
+                        	<div id="picload">
+                        	
+                        	</div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">产品介绍 :</label>
+                        <div class="controls"><script id="editor" type="text/plain" style="width:95%;height:300px;"></script></div>
+                    </div>
+                    
+                    
+                    <div class="control-group">
+                        <label class="control-label">标签 :</label>
+                        <div class="controls">
+                            <input id="tags" name="tags" type="text" class="span7" placeholder="逗号或空格隔开" />
+                            <button type="button" class="btn btn-info">自动提取</button>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">参数设置 :</label>
+                        <div class="controls">
+                            <div class="input-append">
+                                <span class="add-on">浏览次数</span><input id="viewnum" name="viewnum" type="text" value="0" class="span2 add-on-margin"/>
+                                <span class="add-on">关注次数</span><input id="focusnum" name="focusnum" type="text" value="0" class="span2 add-on-margin"/>
+                                <span class="add-on">评论次数</span><input id="commentnum" name="commentnum" type="text" value="0" class="span2 add-on-margin"/>
+                                <span class="add-on">排序</span><input id="sortnum" name="sortnum"  type="text" value="1" class="span2 add-on-margin">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">SEO关键字 :</label>
+                        <div class="controls">
+                        	<input id="seokeyword" name="seokeyword" type="text" class="span7"/>
+                            <span class="help-block blue span11">举例：&lt;meta name =&quot;keywords&quot; content=&quot;xxxx&quot;&gt;</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">SEO描述 :</label>
+                        <div class="controls">
+                        	<textarea id="seodescribe" name="seodescribe" class="textarea_editor span11" rows="3" placeholder="SEO描述"></textarea>
+                            <span class="help-block blue span11">举例：&lt;meta name =&quot;description&quot; content=&quot;xxxx&quot;&gt;</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="button" class="btn btn-primary">返回</button>
+                            <button type="button" class="btn btn-info">预览</button>
+                            <button type="submit" class="btn btn-success">保存</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+         </div>
+      </div>
+    </div>
+</div>
+
+<!--编辑器默认文字-->
+<div id="defaultContent" style="display:none;">
+<h3>速度和反抗撒旦法卡萨帝</h3><p>在笔记本电脑消费群体中，有很多是学生群体。对于大多数高校生来说，笔记本电脑够用就行。因此对显示屏效果就没有那么高的要求。一般而言，1366X768的分辨率由于是较低的分辨率，显示效果有些差那是肯定的。分辨率低的显示面板大多都是TN面板，自然色域不广，可视角度差，亮度不高。在一些15.6英寸本子上颗粒感相当严重。因为分辨率低，15.6英寸宽屏显示界面又大，所以产生颗粒感。但是我们也要看到，分辨率低带来的是价格的实惠。尤其是喜欢打游戏的学生群体，他们注重更多的是性能，而非显示效果。更何况，游戏分辨率也不是越高就越好。分辨率过高，受限于笔记本性能，游戏就会不顺畅了。</p><P>对于大多女性群体，笔记本电脑要求一般就更低，因此显示屏效果也不会很看重。1366X768分辨率相对而言，对大多数消费者是廉价的选择。虽然可视角度差，亮度低，但一般消费者都是一个人自己用一台笔记本，很少好几个人凑在笔记本前使用的。</P><P>值得一提的是，在14.0，15.6英寸宽屏上1366768的分辨率字体和图标现实都较为适中，看起来还是比较舒服的。对于办公用户而言，这个分辨率是比较合适的。分辨率越高，字体显示越小，办公倒反不舒服了。虽然在windows中可以调节字体大小。但还是较为麻烦的。长时间办公小字体倒反不适合了。</p><h3>速度和反抗撒旦法卡萨帝</h3><p>在笔记本电脑消费群体中，有很多是学生群体。对于大多数高校生来说，笔记本电脑够用就行。因此对显示屏效果就没有那么高的要求。一般而言，1366X768的分辨率由于是较低的分辨率，显示效果有些差那是肯定的。分辨率低的显示面板大多都是TN面板，自然色域不广，可视角度差，亮度不高。在一些15.6英寸本子上颗粒感相当严重。因为分辨率低，15.6英寸宽屏显示界面又大，所以产生颗粒感。但是我们也要看到，分辨率低带来的是价格的实惠。尤其是喜欢打游戏的学生群体，他们注重更多的是性能，而非显示效果。更何况，游戏分辨率也不是越高就越好。分辨率过高，受限于笔记本性能，游戏就会不顺畅了。</p><P>对于大多女性群体，笔记本电脑要求一般就更低，因此显示屏效果也不会很看重。1366X768分辨率相对而言，对大多数消费者是廉价的选择。虽然可视角度差，亮度低，但一般消费者都是一个人自己用一台笔记本，很少好几个人凑在笔记本前使用的。</P><P>值得一提的是，在14.0，15.6英寸宽屏上1366768的分辨率字体和图标现实都较为适中，看起来还是比较舒服的。对于办公用户而言，这个分辨率是比较合适的。分辨率越高，字体显示越小，办公倒反不舒服了。虽然在windows中可以调节字体大小。但还是较为麻烦的。长时间办公小字体倒反不适合了。</p><h3>速度和反抗撒旦法卡萨帝</h3><p>在笔记本电脑消费群体中，有很多是学生群体。对于大多数高校生来说，笔记本电脑够用就行。因此对显示屏效果就没有那么高的要求。一般而言，1366X768的分辨率由于是较低的分辨率，显示效果有些差那是肯定的。分辨率低的显示面板大多都是TN面板，自然色域不广，可视角度差，亮度不高。在一些15.6英寸本子上颗粒感相当严重。因为分辨率低，15.6英寸宽屏显示界面又大，所以产生颗粒感。但是我们也要看到，分辨率低带来的是价格的实惠。尤其是喜欢打游戏的学生群体，他们注重更多的是性能，而非显示效果。更何况，游戏分辨率也不是越高就越好。分辨率过高，受限于笔记本性能，游戏就会不顺畅了。</p><P>对于大多女性群体，笔记本电脑要求一般就更低，因此显示屏效果也不会很看重。1366X768分辨率相对而言，对大多数消费者是廉价的选择。虽然可视角度差，亮度低，但一般消费者都是一个人自己用一台笔记本，很少好几个人凑在笔记本前使用的。</P><P>值得一提的是，在14.0，15.6英寸宽屏上1366768的分辨率字体和图标现实都较为适中，看起来还是比较舒服的。对于办公用户而言，这个分辨率是比较合适的。分辨率越高，字体显示越小，办公倒反不舒服了。虽然在windows中可以调节字体大小。但还是较为麻烦的。长时间办公小字体倒反不适合了。</p><h3>速度和反抗撒旦法卡萨帝</h3><p>在笔记本电脑消费群体中，有很多是学生群体。对于大多数高校生来说，笔记本电脑够用就行。因此对显示屏效果就没有那么高的要求。一般而言，1366X768的分辨率由于是较低的分辨率，显示效果有些差那是肯定的。分辨率低的显示面板大多都是TN面板，自然色域不广，可视角度差，亮度不高。在一些15.6英寸本子上颗粒感相当严重。因为分辨率低，15.6英寸宽屏显示界面又大，所以产生颗粒感。但是我们也要看到，分辨率低带来的是价格的实惠。尤其是喜欢打游戏的学生群体，他们注重更多的是性能，而非显示效果。更何况，游戏分辨率也不是越高就越好。分辨率过高，受限于笔记本性能，游戏就会不顺畅了。</p>
+
+</div>
+
+<script src="js/excanvas.min.js"></script> 
+<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.ui.custom.js"></script> 
+<script src="js/bootstrap.min.js"></script>
+<script src="js/select2.min.js"></script>
+
+<script src="js/spin.min.js"></script>
+<script src="js/ladda.min.js"></script>
+<script src="js/jquery.livequery.js"></script>
+
+<script src="uploadify-pic/js/zyFile.js"></script>
+<script src="uploadify-pic/js/zyUpload.js"></script>
+
+
+<!---------------分类三联动--------------------->
+<script src="data/classArr.js"></script> 
+<script src="js/classSelect.js"></script>
+<!---------------分类三联动-END----------------->
+
+<script src="js/iwk.js"></script> 
+<script src="js/jquery.cityselect.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	$(".city_select").livequery(function(){
+		$(this).citySelect({
+			prov:"广东", 
+			city:"深圳",
+			dist:"罗湖区",
+			nodata:"none"
+		});
+		
+	});
+	
+	//初始化产品介绍
+	var content = $("#defaultContent").html();
+	var ue = UE.getEditor('editor');
+	ue.addListener("ready", function () {
+		// editor准备好之后才可以使用
+		ue.setContent(content);
+	
+	});
+	
+	
+	// 图片上传 - 初始化插件
+	$("#picload").zyUpload({
+		width            :   "100%",                  // 宽度
+		height           :   "auto",                  // 宽度
+		itemWidth        :   "120px",                 // 文件项的宽度
+		itemHeight       :   "100px",                 // 文件项的高度
+		url              :   "uploadify.php",    // 上传文件的路径
+		multiple         :   true,                    // 是否可以多个文件上传
+		dragDrop         :   false,                   // 是否可以拖动上传文件
+		del              :   true,                    // 是否可以删除文件
+		finishDel        :   false,  				  // 是否在上传文件完成后删除预览
+		/* 外部获得的回调接口 */
+		onSelect: function(files, allFiles){// 选择文件的回调方法
+			console.info("当前选择了以下文件：");
+			console.info(files);
+			console.info("之前没上传的文件：");
+			console.info(allFiles);
+		},
+		onDelete: function(file, surplusFiles){// 删除一个文件的回调方法
+			console.info("当前删除了此文件：");
+			console.info(file);
+			console.info("当前剩余的文件：");
+			console.info(surplusFiles);
+		},
+		onSuccess: function(file,response){// 文件上传成功的回调方法
+			//document.write(response)
+			var response = eval("(" + response + ")");
+			if(response.result == "00000000"){
+				$("#uploadList_" + file.index).attr("data-url",response.picinfo.fileUrl);
+			}else if(response.result == "00000001"){
+				alert(response.error);
+			}
+		},
+		onFailure: function(file){// 文件上传失败的回调方法
+			console.info("此文件上传失败：");
+			console.info(file);
+		},
+		onComplete: function(responseInfo){// 上传完成的回调方法
+			//alert(responseInfo)
+			console.info("文件上传完成");
+			console.info(responseInfo);
+		}
+	});
+	
+	//图片列表鼠标经过
+	$(".oldpic li").livequery(function(){
+		var icon = '<i class="icon-remove"></i>';
+		$(this).hover(function(){
+			$(this).append(icon);
+		},function(){
+			$(this).children("i").remove();
+		});
+	});
+	
+	//图片列表删除图片
+	$(".oldpic li i").livequery(function(){
+		$(this).click(function(){
+			var picID = $(this).parent().children("img").attr("picID"); //资源ID
+			var pic = $(this).parent().children("img").attr("src");  //资源路径
+			var parent = $(this).parent();
+			W.$.confirm(
+				"确认要删除此图片吗？" , 
+				function(){
+					$.delOldPic(picID,parent);
+				} , 
+				1 ,
+				function(){}
+			);
+		});
+	});
+	
+	
+	
+	
+});
+
+$.extend({
+	saveCool : function(){
+		var name    = $("#name").val();     //标题 *
+		var price    = $("#price").val();     //分类 *
+		var source       = $("#source").val();        //来源 
+		var site         = $("#site").val();          //来源网址
+		var buy         = $("#buy").val();      //购买方式
+		var area         = $("#prov").val() + "," + $("#city").val() + "," + $("#dist").val();//发货地区
+		var describe     = $("#describe").val();      //一句话的描述
+		var tags         = $("#tags").val();          //关键字
+		var viewnum      = $("#viewnum").val();       //浏览次数
+		var focusnum     = $("#focusnum").val();      //关注次数
+		var commentnum   = $("#commentnum").val();    //回复次数
+		var sortnum      = $("#sortnum").val();       //排序
+		var seokeyword   = $("#seokeyword").val();    //SEO关键字
+		var seodescribe  = $("#seodescribe").val();   //SEO描述
+		var details  = UE.getEditor('editor').getContent();  //编辑的内容
+		
+		//获取上传的图片图片
+		var picMaps = "";
+		var urlArr = [];
+		
+		//上传的图片
+		$(".upload_append_list:visible").each(function(index, element) {
+            urlArr.push($(this).attr("data-url").split("@")[0]);
+        });
+		//旧的图片
+		$(".oldpic li img").each(function(index, element) {
+            urlArr.push($(this).attr("src").split("@")[0]);
+        });
+		picMaps = urlArr.join(",");
+		
+		if(picMaps.length == 0){
+			alert("请先上传图片")
+			return false;
+		}
+		else if(newstitle == '' || newstitle.length > 100){
+			alert("标题不能为空,或标题过长");
+			return false;
+		}
+		else if(newsclass == '-1' ){
+			alert("请选择分类");
+			return false;
+		}
+		else if(details == ''){
+			alert("请填写内容");
+			return false;
+		}
+		else if(source == '' || site == ''){
+			alert("请设置来源站点和网址");
+			return false;
+		}
+		else if(headline == '' || headline.length > 500){
+			alert("文章摘要不能为空,或标题过长");
+			return false;
+		}
+		else if(seokeyword == ''){
+			alert("请设置SEO关键字");
+			return false;
+		}
+		else if(seodescribe == ''){
+			alert("请设置SEO详情");
+			return false;
+		}
+		var AjaxURL = "data/result.txt"; //API接口
+		//----------删除以前上传的图片AJAX------------
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			url: AjaxURL,
+			data: { 
+				name    :name, //标题 *
+				price    :price,//分类 *
+				source       :source,//来源 
+				site         :site,//来源网址
+				buy         :buy,//购买方式
+				area         :area,//发货地区
+				describe     :describe,//一句话的描述
+				tags         :tags,//关键字
+				viewnum      :viewnum,//浏览次数
+				focusnum     :focusnum,//关注次数
+				commentnum   :commentnum,//回复次数
+				sortnum      :sortnum,//排序
+				seokeyword   :seokeyword,//SEO关键字
+				seodescribe  :seodescribe,//SEO描述
+				details   : details, //内容
+				picMaps   : picMaps //获取上传的图片图片
+			},
+			success: function (json) {
+				//alert(JSON.stringify(json))
+				//var json = eval("("+json+")");
+				alert(picMaps);
+				alert("提交成功",1);
+				
+			},
+			error: function(data) {
+				W.$.alert("操作失败");
+			}
+		});
+		
+		return false;
+		
+		
+	},
+
+	//以前上传的图片
+	delOldPic : function (_id,_parent){
+		var id = _id;
+		var parent = _parent;
+		var AjaxURL = "data/result.txt"; //API接口
+		//----------删除以前上传的图片AJAX------------
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			url: AjaxURL,
+			data: { 
+				picID : id
+			},
+			success: function (json) {
+				//alert(JSON.stringify(json))
+				//var json = eval("("+json+")");
+				var result = json.result;
+				if(result == '00000000'){//成功
+					setTimeout(function(){
+						parent.hide(300,function(){this.remove();});
+					},500);
+					
+					W.$.alert("删除成功",1);
+					
+				}else {
+					W.$.alert("删除错误");
+				}
+				
+			},
+			error: function(data) {
+				W.$.alert("操作失败");
+			}
+		});
+	}
+});
+</script>
+</body>
+</html>

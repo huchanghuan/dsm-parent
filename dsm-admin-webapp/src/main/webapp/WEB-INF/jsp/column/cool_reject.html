@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<title>剁手猫-CMS后台管理系统</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/fullcalendar.css" />
+<link rel="stylesheet" href="css/matrix-style.css" />
+<link rel="stylesheet" href="css/matrix-media.css" />
+<link rel="stylesheet" href="css/select2.css" />
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/jquery.gritter.css" />
+
+<!--  
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+-->
+<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+<div id="content">
+	<div id="content-header">
+	  <div id="breadcrumb"> <a href="index.html" target="_top" title="首页" class="tip-bottom"><i class="icon-home"></i> 主页</a> <a href="#" class="tip-bottom">商品管理</a> <a href="#" class="current">被驳回</a> </div>
+	</div>
+    
+	<div class="container-fluid">
+		<div class="row-fluid">
+        	<div class="span12">
+              
+              <div class="widget-box cool-list-box">
+                  
+                  <div class="widget-title">
+                  	<span class="icon">
+                    	<input type="checkbox" id="title-checkbox" name="title-checkbox">
+                    </span>
+                    
+                    <h5>全选</h5>
+                    
+                    
+                    <div class="control-group pull-right search">
+                      <div class="controls">
+                        <div class="input-append">
+                          <input type="text" placeholder="输入关键字" style="width:120px;">
+                          <span class="add-on"><a href="javascript:void(0);">GO</a></span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    
+                    <!--表单组-->
+					<div class="btn_group0 pull-right">
+                    	<div class="control-group">
+                          <div class="controls">
+                            <select class="screen">
+                                <option>不限</option>
+                                <option>待审核</option>
+                                <option>被驳回</option>
+                            </select>
+                          </div>
+                        </div>
+                    </div><!--表单组 END-->
+                    
+                    <button class="btn pull-right">批量删除</button>
+                    
+                  </div>
+                  
+                  <div class="widget-content nopadding">
+                    <table class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th><i class="icon-resize-vertical"></i></th>
+                          <th>productID</th>
+                          <th>图片</th>
+                          <th>产品名称</th>
+                          <th>分享人</th>
+                          <th>分享时间</th>
+                          <th style="width:251px;">产品描述</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      
+                        <tr productId="1001">
+                          <td><input type="checkbox" /></td>
+                          <td>1123</td>
+                          <td><img picID='2131' src="http://a.broadin.cn/multimedia/album/default/97/1423cf0e0eec23df6115ec2564aa57e9.jpg@1e_80w_60h_1c_0i_1o_100Q_1x.jpg"></td>
+                          <td>小K智能插座</td>
+                          <td>王大妈</td>
+                          <td>2015/3/21 20:11</td>
+                          <td>内置Wi-FI模块，通过智能手机的客户端来进行功能操作的插座，最基本的功能是通过手机客户端可以遥控插座通断电流</td>
+                          <td class="center">
+                          	<a href="javascript:void(0)" class="btn btn-primary btn-mini">编辑</a>
+                            <a href="javascript:void(0)" class="btn btn-success btn-mini">通过审核</a>
+                            <a href="javascript:void(0)" class="btn btn-danger btn-mini">删除</a>
+                          </td>
+                        </tr>
+                        <tr productId="1002">
+                          <td><input type="checkbox" /></td>
+                          <td>1123</td>
+                          <td><img picID='2131' src="http://a.broadin.cn/multimedia/album/default/97/1423cf0e0eec23df6115ec2564aa57e9.jpg@1e_80w_60h_1c_0i_1o_100Q_1x.jpg"></td>
+                          <td>小K智能插座</td>
+                          <td>王大妈</td>
+                          <td>2015/3/21 20:11</td>
+                          <td>内置Wi-FI模块，通过智能手机的客户端来进行功能操作的插座，最基本的功能是通过手机客户端可以遥控插座通断电流</td>
+                          <td class="center">
+                          	<a href="javascript:void(0)" class="btn btn-primary btn-mini">编辑</a>
+                            <a href="javascript:void(0)" class="btn btn-success btn-mini">通过审核</a>
+                            <a href="javascript:void(0)" class="btn btn-danger btn-mini">删除</a>
+                          </td>
+                        </tr>
+                        <tr productId="1003">
+                          <td><input type="checkbox" /></td>
+                          <td>1123</td>
+                          <td><img picID='2131' src="http://a.broadin.cn/multimedia/album/default/97/1423cf0e0eec23df6115ec2564aa57e9.jpg@1e_80w_60h_1c_0i_1o_100Q_1x.jpg"></td>
+                          <td>小K智能插座</td>
+                          <td>王大妈</td>
+                          <td>2015/3/21 20:11</td>
+                          <td>内置Wi-FI模块，通过智能手机的客户端来进行功能操作的插座，最基本的功能是通过手机客户端可以遥控插座通断电流</td>
+                          <td class="center">
+                          	<a href="javascript:void(0)" class="btn btn-primary btn-mini">编辑</a>
+                            <a href="javascript:void(0)" class="btn btn-success btn-mini">通过审核</a>
+                            <a href="javascript:void(0)" class="btn btn-danger btn-mini">删除</a>
+                          </td>
+                        </tr>
+                        <tr productId="1004">
+                          <td><input type="checkbox" /></td>
+                          <td>1123</td>
+                          <td><img picID='2131' src="http://a.broadin.cn/multimedia/album/default/97/1423cf0e0eec23df6115ec2564aa57e9.jpg@1e_80w_60h_1c_0i_1o_100Q_1x.jpg"></td>
+                          <td>小K智能插座</td>
+                          <td>王大妈</td>
+                          <td>2015/3/21 20:11</td>
+                          <td>内置Wi-FI模块，通过智能手机的客户端来进行功能操作的插座，最基本的功能是通过手机客户端可以遥控插座通断电流</td>
+                          <td class="center">
+                          	<a href="javascript:void(0)" class="btn btn-primary btn-mini">编辑</a>
+                            <a href="javascript:void(0)" class="btn btn-success btn-mini">通过审核</a>
+                            <a href="javascript:void(0)" class="btn btn-danger btn-mini">删除</a>
+                          </td>
+                        </tr>
+                        <tr productId="1005">
+                          <td><input type="checkbox" /></td>
+                          <td>1123</td>
+                          <td><img picID='2131' src="http://a.broadin.cn/multimedia/album/default/97/1423cf0e0eec23df6115ec2564aa57e9.jpg@1e_80w_60h_1c_0i_1o_100Q_1x.jpg"></td>
+                          <td>小K智能插座</td>
+                          <td>王大妈</td>
+                          <td>2015/3/21 20:11</td>
+                          <td>内置Wi-FI模块，通过智能手机的客户端来进行功能操作的插座，最基本的功能是通过手机客户端可以遥控插座通断电流</td>
+                          <td class="center">
+                          	<a href="javascript:void(0)" class="btn btn-primary btn-mini">编辑</a>
+                            <a href="javascript:void(0)" class="btn btn-success btn-mini">通过审核</a>
+                            <a href="javascript:void(0)" class="btn btn-danger btn-mini">删除</a>
+                          </td>
+                        </tr>
+                        <tr productId="1006">
+                          <td><input type="checkbox" /></td>
+                          <td>1123</td>
+                          <td><img picID='2131' src="http://a.broadin.cn/multimedia/album/default/97/1423cf0e0eec23df6115ec2564aa57e9.jpg@1e_80w_60h_1c_0i_1o_100Q_1x.jpg"></td>
+                          <td>小K智能插座</td>
+                          <td>王大妈</td>
+                          <td>2015/3/21 20:11</td>
+                          <td>内置Wi-FI模块，通过智能手机的客户端来进行功能操作的插座，最基本的功能是通过手机客户端可以遥控插座通断电流</td>
+                          <td class="center">
+                          	<a href="javascript:void(0)" class="btn btn-primary btn-mini">编辑</a>
+                            <a href="javascript:void(0)" class="btn btn-success btn-mini">通过审核</a>
+                            <a href="javascript:void(0)" class="btn btn-danger btn-mini">删除</a>
+                          </td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                    
+                    <!------分页------>
+                      <div class="pagination alternate table-pagination">
+                            <ul>
+                                <li class="disabled"><a href="#">首页</a></li>
+                                <li class="disabled"><a href="#">上一页</a></li>
+                                <li class="active"> <a href="#">1</a> </li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">下一页</a></li>
+                                <li><a href="#">尾页</a></li>
+                            </ul>
+                        </div><!------分页-END----->
+                    
+                  </div>
+                  
+                </div>
+                
+            </div>
+        </div>
+	</div>
+</div>
+
+
+<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.ui.custom.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.uniform.js"></script> 
+<script src="js/select2.min.js"></script> 
+
+
+<script src="uploadify-pic/js/zyFile.js"></script>
+<script src="uploadify-pic/js/zyUpload.js"></script>
+
+
+<script src="js/iwk.js"></script> 
+<script type="text/javascript">
+
+$(function(){
+	
+	$("#title-checkbox").toggle(function(){
+		$(".table td input[type=checkbox]").attr("checked","checked");
+	},function(){
+		$(".table td input[type=checkbox]").removeAttr("checked");
+	});
+	
+});
+
+$.extend({
+	//下架
+	SoldOutProduct: function(_id){
+		alert(_id);
+	},
+	//发布/上架
+	SoldInProduct: function(_id){
+		alert(_id);
+	},
+	//删除
+	deleteProduct: function(_id){
+		alert(_id);
+	}
+});
+
+</script>
+</body>
+</html>

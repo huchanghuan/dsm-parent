@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.iwancool</groupId>
+    <artifactId>dsm-parent</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  <artifactId>dsm-admin-webapp</artifactId>
+  <packaging>war</packaging>
+  <name>dsm-admin-webapp Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+    
+    <!--依赖模块  -->
+			<dependency>
+				<groupId>com.iwancool</groupId>
+				<artifactId>dsm-controller</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>com.iwancool</groupId>
+				<artifactId>dsm-service</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>com.iwancool</groupId>
+				<artifactId>dsm-utils</artifactId>
+			</dependency>
+    
+    <!-- spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+			</dependency>
+    
+    		<!-- mysql -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+			</dependency>
+			
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+			</dependency>
+			
+			<dependency>
+				<groupId>taglibs</groupId>
+				<artifactId>standard</artifactId>
+			</dependency>
+			
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+			</dependency>
+    
+  </dependencies>
+  <build>
+    <finalName>dsm-oms</finalName>
+  </build>
+</project>
