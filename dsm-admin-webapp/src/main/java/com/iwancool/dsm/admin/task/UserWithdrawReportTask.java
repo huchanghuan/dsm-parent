@@ -51,7 +51,7 @@ public class UserWithdrawReportTask {
 		long dayStartUtc = StringUtil.getDayStartUtc();
 		long dayEndUtc = dayStartUtc + 24 * 60 * 60 * 1000;
 		List<Object[]> objs = userWithdrawRecordService.findUserWithdrawRecordListByUtc(dayStartUtc, dayEndUtc);
-		if (null != objs) {
+		if (null != objs && !objs.isEmpty()) {
 			ResultResp resultResp = userWithdrawReportService.saveBatch(objs);
 			if (!resultResp.isSuccess(resultResp)) throw new Exception();
 		}

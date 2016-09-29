@@ -1,5 +1,8 @@
 package org.dsm.utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -23,9 +26,12 @@ public class AppTest
     /**
      * @return the suite of tests being tested
      */
-    public static Test suite()
+    @org.junit.Test
+    public void test()
     {
-        return new TestSuite( AppTest.class );
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		long batchNo = Long.valueOf(sdf.format(new Date()) + "001");
+		System.out.println(batchNo);
     }
 
     /**

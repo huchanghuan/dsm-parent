@@ -111,7 +111,7 @@
 	$(".pubUtc").html(formatUTC($(".pubUtc").html(), 'yyyy-MM-dd hh:mm'));
 	var images = $(".product_img");
 	var html = JSON.parse(images.html()).map(function(ele, index){
-		return '<img class="p-pic" src="' + ele + '">';
+		return '<img class="p-pic" src="' +domain+ ele + '@1e_200w_136h_1c_0i_1o_100q_100sh_1x.jpg">';
 	}).join('');
 	images.html(html);
 	

@@ -21,6 +21,8 @@ public class WithdrawReportBean implements Serializable{
 	private int withdrawAmount;    //扣除费用后的
 	
 	private int statuc;
+	
+	private String batchNo;
 
 	public int getDate() {
 		return date;
@@ -52,6 +54,14 @@ public class WithdrawReportBean implements Serializable{
 
 	public void setStatuc(int statuc) {
 		this.statuc = statuc;
+	}
+
+	public String getBatchNo() {
+		return batchNo;
+	}
+
+	public void setBatchNo(String batchNo) {
+		this.batchNo = batchNo;
 	}
 	
 	

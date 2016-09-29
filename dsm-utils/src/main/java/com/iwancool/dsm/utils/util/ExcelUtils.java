@@ -368,7 +368,7 @@ public class ExcelUtils {
 			Label payDaylabel = new Label(1, TITLE_ROW1 + 1, withdrawExport.getPayDay(), normalFormat);
 			Label draweeLabel = new Label(2, TITLE_ROW1 + 1, withdrawExport.getDrawee(), normalFormat);
 			Label accountLabel = new Label(3, TITLE_ROW1 + 1, withdrawExport.getAccountName(), normalFormat);
-			Label totalAmountLabel = new Label(4, TITLE_ROW1 + 1, String.valueOf(withdrawExport.getTotalAmount()), normalFormat);
+			Label totalAmountLabel = new Label(4, TITLE_ROW1 + 1, String.valueOf(withdrawExport.getTotalAmount() / 100), normalFormat);
 			Label totalnumberLabel = new Label(5, TITLE_ROW1 + 1, String.valueOf(withdrawExport.getTotalNum()), normalFormat);
 			sheet.addCell(batchNoLabel);
 			sheet.addCell(payDaylabel);
@@ -390,7 +390,7 @@ public class ExcelUtils {
 				Label userIdLabel = new Label(0, TITLE_ROW2 + 1 + r, merchant.getUserId(), normalFormat);
 				Label payeeLabel = new Label(1, TITLE_ROW2 + 1 + r, merchant.getPayee(), normalFormat);
 				Label payeeNameLabel = new Label(2, TITLE_ROW2 + 1 + r, merchant.getPayeeName(), normalFormat);
-				Label amountLabel = new Label(3, TITLE_ROW2 + 1 + r, String.valueOf(merchant.getAmount()), normalFormat);
+				Label amountLabel = new Label(3, TITLE_ROW2 + 1 + r, String.valueOf(merchant.getAmount() / 100), normalFormat);
 				Label reasonLabel = new Label(4, TITLE_ROW2 + 1 + r, merchant.getReason(), normalFormat);
 				sheet.addCell(userIdLabel);
 				sheet.addCell(payeeLabel);

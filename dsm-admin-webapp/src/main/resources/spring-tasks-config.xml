@@ -23,7 +23,7 @@
 		<bean id="userWithdrawReportTask" class="com.iwancool.dsm.admin.task.UserWithdrawReportTask"></bean>
 		<task:scheduled-tasks>
 			<!--每天凌晨统计用户提现记录  -->
-			<task:scheduled ref="userWithdrawReportTask" method="execute" cron="00 00 00 * * ?"/>
+			<task:scheduled ref="userWithdrawReportTask" method="execute" cron="00 16 00 * * ?"/>
 		</task:scheduled-tasks>
 
 </beans>

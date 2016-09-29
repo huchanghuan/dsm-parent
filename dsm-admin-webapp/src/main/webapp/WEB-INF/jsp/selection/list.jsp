@@ -88,6 +88,7 @@
 var W = window.top;
 var $table = null;
 var limit = 20;
+var domain = "http://cdn.duoshoucat.com/";
 $(function(){
 	
 	initTable();
@@ -192,7 +193,7 @@ function callback(records){
 function getHtml(id, goodsName, images) {
 	var html = '<li data-id="'+id+'">';
     html += '<a target="_blank" href="http://iwancool.com/details.php?productID=10001">';
-    html += '<img src="http://a.broadin.cn/multimedia/album/default/97/1423cf0e0eec23df6115ec2564aa57e9.jpg@1e_120w_110h_1c_0i_1o_100Q_1x.jpg">';
+    html += '<img src="'+domain+JSON.parse(images)[0]+'@1e_120w_110h_1c_0i_1o_100Q_1x.jpg">';
     html += '<div class="text-center">'+goodsName+'</div>';
 	html += '</a>'
 	html += '<i class="icon-remove"></i>';
@@ -226,7 +227,7 @@ function initTable() {
             	var html = '';
             	if (data) {
             		var imgArrays = JSON.parse(data);
-            		html = '<img src="'+imgArrays[0]+'" width="70" height="47">';
+            		html = '<img src="'+domain+imgArrays[0]+'" width="70" height="47">';
             	}
             	return html;
             }

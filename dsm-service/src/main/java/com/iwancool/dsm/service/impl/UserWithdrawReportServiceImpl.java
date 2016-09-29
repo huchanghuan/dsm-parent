@@ -1,16 +1,18 @@
 package com.iwancool.dsm.service.impl;
 
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tools.ant.types.resources.selectors.Date;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.iwancool.dsm.common.ResultResp;
@@ -36,14 +38,14 @@ import com.iwancool.dsm.utils.util.ExcelUtils;
 public class UserWithdrawReportServiceImpl extends AbstractBaseService implements IUserWithdrawReportService{
 
 	private static final int MAX_WITHDRAW_NUM = 3000;      //支付宝一次最多处理的提款数
+	private static final String ALIPAY_ACCOUNT = "alipay_account";
+	private static final String ALIPAY_USERNAME = "alipay_username";
 	
-	//阿里支付账号
-	@Value(value = "${alipay_account}")
-	private String alipay_account;
+	private static final String DEFAULT_ALIPAY_ACCOUNT = "iwancool@126.com";
+	private static final String DEFAULT_ALIPAY_USERNAME = "深圳恒兴方圆科技有限公司";
 	
-	//阿里支付名称
-	@Value(value = "${alipay_username}")
-	private String alipay_username;
+	@Resource(name = "config")
+	private Properties config;
 	
 	@Resource(name = "userWithdrawReportDao")
 	private IUserWithdrawReportDao userWithdrawReportDao;
@@ -66,11 +68,11 @@ public class UserWithdrawReportServiceImpl extends AbstractBaseService implement
 				UserWithdrawReportModel userWithdrawReport = new UserWithdrawReportModel();
 				
 				Object[] objArrays = objs.get(i);
-				userWithdrawReport.setUserId((Long)objArrays[0]);
+				userWithdrawReport.setUserId(((BigInteger)objArrays[0]).longValue());
 				userWithdrawReport.setBatchNo(String.valueOf(batchNum));
 				userWithdrawReport.setStatus(UserWithdrawReportModel.NOT_EXPORT);
 				userWithdrawReport.setDate(Integer.valueOf(sdf.format(new Date())));
-				userWithdrawReport.setAmount((Integer)objArrays[1]);
+				userWithdrawReport.setAmount(((BigDecimal)objArrays[1]).intValue());
 				
 				userWithdrawReportDao.save(userWithdrawReport);
 			}
@@ -97,8 +99,8 @@ public class UserWithdrawReportServiceImpl extends AbstractBaseService implement
 			WithdrawExportBean withdrawExport = new WithdrawExportBean();
 			withdrawExport.setBatchNo(batchNo);
 			withdrawExport.setPayDay(String.valueOf(date));
-			withdrawExport.setDrawee(alipay_account);
-			withdrawExport.setAccountName(alipay_username);
+			withdrawExport.setDrawee(config.getProperty(ALIPAY_ACCOUNT, DEFAULT_ALIPAY_ACCOUNT));
+			withdrawExport.setAccountName(config.getProperty(ALIPAY_USERNAME, DEFAULT_ALIPAY_USERNAME));
 			withdrawExport.setTotalAmount(totalAmount);
 			withdrawExport.setTotalNum(exportDataList.size());
 			
@@ -155,7 +157,7 @@ public class UserWithdrawReportServiceImpl extends AbstractBaseService implement
 			int currPage = (offset + limit) / limit;
 			userWithdrawReportList = userWithdrawReportDao.findWithdrawReportList(date, batchNo, currPage, limit);
 		}
-		return null;
+		return new DataGrid<UserWithdrawReportModel>(totalSize, userWithdrawReportList);
 	}
 
 }

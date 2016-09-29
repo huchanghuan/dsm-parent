@@ -91,7 +91,7 @@ function initTable() {
         	formatter : function (data, row, index) {
         		var html = '';
         		if (data) {
-        			html = '<img class="img-responsive img-w-h" src="'+row.content+'@1e_300w_194h_1c_0i_1o_100q_100sh_1x.jpg" >';
+        			html = '<img class="img-responsive img-w-h" src="'+row.image1+'@1e_300w_194h_1c_0i_1o_100q_100sh_1x.jpg" >';
         		} 
         		return html;
         	}

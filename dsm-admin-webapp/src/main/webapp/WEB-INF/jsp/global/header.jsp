@@ -33,5 +33,8 @@ body,html {
 </style>
 <body>
 
+<script>
+var domain = "http://cdn.duoshoucat.com/"
+</script>
 </body>
 </html>

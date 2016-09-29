@@ -98,6 +98,7 @@
 <script type="text/javascript">
 var W = window.top;
 var $table = null;
+var domain = "http://cdn.duoshoucat.com/"
 $(function(){
 	
 	//初始化表格
@@ -230,7 +231,7 @@ function initTable() {
             	var html = '';
             	if (data) {
             		var imgArrays = JSON.parse(data);
-            		html = html += '<img class="img-responsive img-w-h" src="'+imgArrays[0]+'@1e_300w_194h_1c_0i_1o_100q_100sh_1x.jpg" >';
+            		html = html += '<img class="img-responsive img-w-h" src="'+domain+imgArrays[0]+'@1e_300w_194h_1c_0i_1o_100q_100sh_1x.jpg" >';
             	}
             	return html;
             }
