@@ -1,6 +1,7 @@
 package com.iwancool.dsm.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.iwancool.dsm.domain.GoodsModel;
 
@@ -44,5 +45,14 @@ public interface IGoodsDao extends IGeneralORMDao<GoodsModel, Long>{
 	 * @return
 	 */
 	public List<GoodsModel> findGoodsList(int columnId, int categoryId, int status, String keyword, int currPage, int limit);
+
+	/**
+	 * 查找指定时间段销售商品最多的用户
+	 * @param startUtc
+	 * @param endUtc
+	 * @param size 
+	 * @return
+	 */
+	public List<Map<String, Object>> findChopHandUser(long startUtc, long endUtc, int size);
 
 }

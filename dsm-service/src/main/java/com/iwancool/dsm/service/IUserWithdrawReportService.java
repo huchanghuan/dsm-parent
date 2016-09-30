@@ -17,6 +17,8 @@ import com.iwancool.dsm.utils.bean.WithdrawReportBean;
  *
  */
 public interface IUserWithdrawReportService extends IGenericService{
+	
+	public static final int MAX_WITHDRAW_NUM = 3000;      //支付宝一次最多处理的提款数
 
 	/**
 	 * 保存

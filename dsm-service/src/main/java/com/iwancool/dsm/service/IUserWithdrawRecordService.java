@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.iwancool.dsm.common.ResultResp;
 import com.iwancool.dsm.domain.UserWithdrawRecordModel;
-import com.iwancool.dsm.utils.bean.DataGrid;
 
 /**
  * 用户提现申请记录
@@ -36,5 +35,15 @@ public interface IUserWithdrawRecordService extends IGenericService{
 	 * @return
 	 */
 	public List<Object[]> findUserWithdrawRecordListByUtc(long startUtc, long endUtc);
+
+	/**
+	 * 查提现记录
+	 * @param startUtc
+	 * @param endUtc
+	 * @param batchNo
+	 * @return
+	 */
+	public List<UserWithdrawRecordModel> findUserWithdrawRecordListByUtc(long startUtc, long endUtc,
+			String batchNo);
 
 }

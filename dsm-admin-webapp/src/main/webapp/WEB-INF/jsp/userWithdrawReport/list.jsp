@@ -16,12 +16,12 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
         	<div class="span12">
-            
+				 <div class="widget-box user-list-box">            
                   <div class="widget-content nopadding">
                     <table id="tableBox" class="table table-bordered table-striped"></table>   
                 </div>
                   
-                
+                </div>
             </div>
         </div>
 	</div>

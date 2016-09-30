@@ -17,12 +17,12 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
         	<div class="span12">
-            
+            	 <div class="widget-box user-list-box">
                   <div class="widget-content nopadding">
                     <table id="tableBox" class="table table-bordered table-striped"></table>   
                 </div>
                   
-                
+                </div>
             </div>
         </div>
 	</div>
@@ -43,9 +43,9 @@ function initTable() {
 	
 	$table = $('#tableBox').bootstrapTable({
         method: 'post',
-		url:"${basepath}/userWithdrawReport/list",
+		url:"${basepath}/userWithdrawReport/detail",
         contentType:'application/x-www-form-urlencoded',
-        sidePagination:'server',
+        sidePagination:'client',
         queryParams:function(params){
               params.batchNo = batchNo;			//批次
               params.date = date;				//日期
@@ -57,60 +57,46 @@ function initTable() {
         	field :'idx',
         	title : '编号'
         },{
-        	field:'amount',
+        	field :'userId',
+        	title : '用户ID'
+        },{
+        	field:'requestAmount',
         	title : '提现金额',
         	formatter : function (data) {
         		return "￥" + (data/100).toFixed(2);
         	}
         },{
-        	field :'userId',
-        	title : '用户ID'
+        	field:'payAmount',
+        	title : '实际付款',
+        	formatter : function (data) {
+        		return "￥" + (data/100).toFixed(2);
+        	}
         },{
-        	field :'date',
-        	title : '日期'
-        },{
-        	field : 'batchNo',
-        	title : '批次号'
+        	field :'utc',
+        	title : '申请时间',
+        	formatter : function (data) {
+        		if (data) {
+        			return formatUTC(data, "yyyy-MM-dd hh:mm");
+        		} else {
+        			return '';
+        		}
+        	}
         },{
             field: 'status',
-            title: '状态',
+            title: '结果',
             formatter : function (data, row, index) {
             	var html = '';
             	if (data == 0) {
-            		html = '<label class="label label-default">未导出</label>';
+            		html = '<label class="label label-warning">提现处理中</label>';
             	} else if (data == 1) {
-            		html = '<label class="label label-warning">处理中</label>';
-            	} else if (data == 2) {
-            		html = '<label class="label label-info">已完成</label>';
+            		html = '<label class="label label-success">提现成功</label>';
+            	} else if (data == -1) {
+            		html = '<label class="label label-default">提现失败</label>';
             	} else {
             		html = '<label class="label label-danger">未知</label>';
             	}
             	return html;
             }
-        },{
-        	field : 'statuc',
-        	title : '操作',
-        	formatter : function (data, row, index) {
-        		var html = '<div class="btn-group">';
-            	if (data == 0) { 
-            		html += '<button class="btn btn-danger btn-mini">导出提现报表</button>';
-            	} else if (data == 1) {
-            		//html += '<input type="file" class="hide">';
-            		//html += '<button class="btn btn-warning btn-mini">导入提现结果</button>';
-            		html += '<form id="uploadForm" method="post" action="javascript:void(0);" enctype="multipart/form-data">';
-            		html +=	'<button class="btn btn-warning btn-mini" size="30" id="uploadExcel">导入提现结果</button>';
-            		html += '<input type="file" class="hide" name="file" style="position:absolute; filter:alpha(opacity=0); opacity:0; width:30px; " size="1" />';
-            		html +=	'</form>';
-            	} else if (data == 2) {
-            		var batchNo = row.batchNo;
-            		var date = row.date;
-            		html += '<a class="btn btn-info btn-mini" href="${basepath}/userWithdrawReport/toDetail?batchNo='+batchNo+'&date='+date+'">详情</a>';
-            	} else {
-            		html += '<button class="btn btn-default btn-mini">未知</button>';
-            	}
-            	html += '</div>';
-            	return html;
-        	}
         }],
         onPostBody:function(row){
          	 $("[data-toggle='popover']").popover({

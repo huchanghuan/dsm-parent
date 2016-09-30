@@ -1,5 +1,8 @@
 package com.iwancool.dsm.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.iwancool.dsm.bean.GoodsBean;
 import com.iwancool.dsm.common.ResultResp;
 import com.iwancool.dsm.domain.GoodsModel;
@@ -53,5 +56,14 @@ public interface IGoodsService extends IGenericService{
 	 * @return
 	 */
 	public ResultResp deleteBatchGoods(String ids);
+	
+	/**
+	 * 指定时间段内发布商品最多的用户
+	 * @param startUtc
+	 * @param endUtc
+	 * @param size 
+	 * @return
+	 */
+	public List<Map<String, Object>> findChopHandUser(long startUtc, long endUtc, int size);
 
 }

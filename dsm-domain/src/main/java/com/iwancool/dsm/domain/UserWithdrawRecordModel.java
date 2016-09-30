@@ -30,7 +30,7 @@ public class UserWithdrawRecordModel extends  AbstractBaseModel{
 
 	public static final int DEAL = 0;						//处理中
 	public static final int WITHDRAW_SUCCESS = 1; 			//完成
-	public static final int WITHDRAW_FAIL = 2; 				//失败
+	public static final int WITHDRAW_FAIL = -1; 				//失败
 	
 	
 	@Id

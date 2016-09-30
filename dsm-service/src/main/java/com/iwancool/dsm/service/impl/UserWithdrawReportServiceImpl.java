@@ -38,7 +38,6 @@ import com.iwancool.dsm.utils.util.ExcelUtils;
 @Service(value = "userWithdrawReportService")
 public class UserWithdrawReportServiceImpl extends AbstractBaseService implements IUserWithdrawReportService{
 
-	private static final int MAX_WITHDRAW_NUM = 3000;      //支付宝一次最多处理的提款数
 	private static final String ALIPAY_ACCOUNT = "alipay_account";
 	private static final String ALIPAY_USERNAME = "alipay_username";
 	

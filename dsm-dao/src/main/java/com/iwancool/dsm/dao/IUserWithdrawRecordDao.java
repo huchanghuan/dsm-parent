@@ -29,4 +29,15 @@ public interface IUserWithdrawRecordDao  extends IGeneralORMDao<UserWithdrawReco
 	 */
 	public void updateBatchUserWithdrawRecord(List<Long> userIdList, int status, long startUtc, long endUtc);
 
+	/**
+	 * 提现记录
+	 * @param startUtc
+	 * @param endUtc
+	 * @param offset
+	 * @param limit
+	 * @return
+	 */
+	public List<UserWithdrawRecordModel> findUserWithdrawRecordListByUtc(long startUtc, long endUtc, int offset,
+			int limit);
+
 }

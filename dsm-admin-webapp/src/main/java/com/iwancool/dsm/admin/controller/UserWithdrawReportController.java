@@ -2,6 +2,9 @@ package com.iwancool.dsm.admin.controller;
 
 
 
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.iwancool.dsm.common.ResultResp;
 import com.iwancool.dsm.controller.AbstractBaseController;
-import com.iwancool.dsm.domain.UserWithdrawReportModel;
+import com.iwancool.dsm.domain.UserWithdrawRecordModel;
 import com.iwancool.dsm.service.IUserWithdrawRecordService;
 import com.iwancool.dsm.service.IUserWithdrawReportService;
 import com.iwancool.dsm.utils.bean.DataGrid;
@@ -54,7 +57,7 @@ public class UserWithdrawReportController extends AbstractBaseController{
 		String batchNo = ServletRequestUtils.getRequiredStringParameter(request, "batchNo");
 		model.addAttribute("date", date);
 		model.addAttribute("batchNo", batchNo);
-		return "userWithdrawReport/detail";
+		return "userWithdrawReport/detail_list";
 	}
 	
 	/**
@@ -113,9 +116,13 @@ public class UserWithdrawReportController extends AbstractBaseController{
 	public void detail(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int date = ServletRequestUtils.getRequiredIntParameter(request, "date");
 		String batchNo = ServletRequestUtils.getRequiredStringParameter(request, "batchNo");
-		int offset = ServletRequestUtils.getIntParameter(request, "offset", 0);
-		int limit = ServletRequestUtils.getIntParameter(request, "limit", 10);
-		DataGrid<UserWithdrawReportModel> dataGrid = userWithdrawReportService.findUserWithdrawReportList(date, batchNo, offset, limit);
-		responseDataGrid(response, dataGrid);
+		//int offset = ServletRequestUtils.getIntParameter(request, "offset", 0);
+		//int limit = ServletRequestUtils.getIntParameter(request, "limit", 10);
+		//DataGrid<UserWithdrawReportModel> dataGrid = userWithdrawReportService.findUserWithdrawReportList(date, batchNo, offset, limit);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		long startUtc = sdf.parse(String.valueOf(date)).getTime();
+		long endUtc = startUtc + (24 * 60 * 60 * 1000);
+		List<UserWithdrawRecordModel> list = userWithdrawRecordService.findUserWithdrawRecordListByUtc(startUtc, endUtc, batchNo);
+		responseDataGrid(response, list);
 	}
 }

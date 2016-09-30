@@ -2,6 +2,7 @@ package com.iwancool.dsm.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -140,5 +141,12 @@ public class GoodsServiceImpl extends AbstractBaseService implements IGoodsServi
 		if (null != category) 
 			goodsBean.setCategoryName(category.getName());
 		
+	}
+
+
+	@Override
+	public List<Map<String, Object>> findChopHandUser(long startUtc, long endUtc, int size) {
+		
+		return goodsDao.findChopHandUser(startUtc, endUtc, size);
 	}
 }

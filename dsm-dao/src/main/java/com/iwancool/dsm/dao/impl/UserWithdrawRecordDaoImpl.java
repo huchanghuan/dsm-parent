@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.hibernate.Query;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.iwancool.dsm.dao.IUserWithdrawRecordDao;
@@ -18,6 +22,8 @@ import com.iwancool.dsm.domain.UserWithdrawRecordModel;
 @Repository(value = "userWithdrawRecordDao")
 public class UserWithdrawRecordDaoImpl extends AbstractBaseGenericORMDaoImpl<UserWithdrawRecordModel, Integer> implements IUserWithdrawRecordDao{
 
+	@Resource(name = "jdbcTemplate")
+	private JdbcTemplate jdbcTemplate;
 	/**
 	 * 
 	 */
@@ -25,7 +31,7 @@ public class UserWithdrawRecordDaoImpl extends AbstractBaseGenericORMDaoImpl<Use
 
 	@Override
 	public List<Object[]> findUserWithdrawRecordListByUtc(long startUtc, long endUtc) {
-		String sql = "select user_id, SUM(pay_amount) from user_withdraw_record where utc >= :startUtc and utc < :endUtc group by user_id";
+		String sql = "select user_id, SUM(pay_amount) from user_withdraw_record where utc >= :startUtc and utc < :endUtc group by user_id order by idx desc";
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("startUtc", startUtc);
 		params.put("endUtc", endUtc);
@@ -44,6 +50,15 @@ public class UserWithdrawRecordDaoImpl extends AbstractBaseGenericORMDaoImpl<Use
 			
 			query.executeUpdate();
 		}
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public List<UserWithdrawRecordModel> findUserWithdrawRecordListByUtc(long startUtc, long endUtc, int offset,
+			int limit) {
+		String sql = "select idx idx,user_id userId, utc utc, SUM(pay_amount) payAmount, SUM(request_amount) requestAmount,status status from user_withdraw_record where utc >= ? and utc < ? group by user_id order by idx desc limit ?,?";
+		
+		return jdbcTemplate.query(sql, new Object[]{startUtc, endUtc, offset, limit}, new BeanPropertyRowMapper(UserWithdrawRecordModel.class));
 	}
 
 }

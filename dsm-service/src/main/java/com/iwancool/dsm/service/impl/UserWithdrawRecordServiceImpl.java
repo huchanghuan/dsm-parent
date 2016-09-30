@@ -13,6 +13,7 @@ import com.iwancool.dsm.common.ResultResp;
 import com.iwancool.dsm.dao.IUserWithdrawRecordDao;
 import com.iwancool.dsm.domain.UserWithdrawRecordModel;
 import com.iwancool.dsm.service.IUserWithdrawRecordService;
+import com.iwancool.dsm.service.IUserWithdrawReportService;
 
 /**
  * 用户提现申请记录Service实现类
@@ -54,6 +55,14 @@ public class UserWithdrawRecordServiceImpl extends AbstractBaseService implement
 	public List<Object[]> findUserWithdrawRecordListByUtc(long startUtc, long endUtc) {
 		
 		return userWithdrawRecordDao.findUserWithdrawRecordListByUtc(startUtc, endUtc);
+	}
+
+	@Override
+	public List<UserWithdrawRecordModel> findUserWithdrawRecordListByUtc(long startUtc, long endUtc, String batchNo) {
+		int currPage = Integer.valueOf(batchNo.substring(8));
+		int offset = (currPage - 1) * IUserWithdrawReportService.MAX_WITHDRAW_NUM;
+		int limit = offset + IUserWithdrawReportService.MAX_WITHDRAW_NUM;
+		return userWithdrawRecordDao.findUserWithdrawRecordListByUtc(startUtc, endUtc, offset, limit);
 	}
 
 }

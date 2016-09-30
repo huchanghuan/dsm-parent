@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.hibernate.Query;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -23,6 +26,9 @@ import com.iwancool.dsm.domain.GoodsModel;
 public class GoodsDaoImpl extends AbstractBaseGenericORMDaoImpl<GoodsModel, Long> implements IGoodsDao{
 
 	private static final long serialVersionUID = -4152238431600103016L;
+	
+	@Resource(name = "jdbcTemplate")
+	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public void deleteBatchGoods(List<Long> idList) {
@@ -87,6 +93,12 @@ public class GoodsDaoImpl extends AbstractBaseGenericORMDaoImpl<GoodsModel, Long
 		hql.append(" ORDER BY rcmLevel DESC, id DESC");
 		
 		return find(hql.toString(), params, currPage, limit);
+	}
+
+	@Override
+	public List<Map<String, Object>> findChopHandUser(long startUtc, long endUtc, int size) {
+		String sql = "select user_id userId, count(id) saleFrequency from goods where pub_utc >= ? and pub_utc < ? group by user_id order by saleFrequency desc limit ?";
+		return jdbcTemplate.queryForList(sql, startUtc, endUtc, size);
 	}
 
 	
