@@ -46,6 +46,8 @@ public class UserWithdrawReportModel extends AbstractBaseModel{
 
 	@Column(name = "status", columnDefinition = "tinyint")
 	private int status;
+	
+	
 
 	public int getIdx() {
 		return idx;
@@ -85,18 +87,6 @@ public class UserWithdrawReportModel extends AbstractBaseModel{
 
 	public void setStatus(int status) {
 		this.status = status;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public static int getNotExport() {
-		return NOT_EXPORT;
-	}
-
-	public static int getWithdraw() {
-		return WITHDRAW;
 	}
 
 	public String getBatchNo() {

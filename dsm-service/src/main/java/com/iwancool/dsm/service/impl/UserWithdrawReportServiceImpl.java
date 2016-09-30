@@ -22,6 +22,7 @@ import com.iwancool.dsm.domain.UserWithdrawReportModel;
 import com.iwancool.dsm.service.IUserAccountService;
 import com.iwancool.dsm.service.IUserWithdrawRecordService;
 import com.iwancool.dsm.service.IUserWithdrawReportService;
+import com.iwancool.dsm.utils.bean.AccountStatementBean;
 import com.iwancool.dsm.utils.bean.DataGrid;
 import com.iwancool.dsm.utils.bean.MerchantsRecordBean;
 import com.iwancool.dsm.utils.bean.WithdrawExportBean;
@@ -131,10 +132,10 @@ public class UserWithdrawReportServiceImpl extends AbstractBaseService implement
 		
 		ResultResp resultResp = null;
 		//2、更新账户余额
-		int day = Integer.valueOf(withdrawResult.getBatchNo().substring(0, 7));
+		int day = Integer.valueOf(withdrawResult.getBatchNo().substring(0, 8));
 		List<Long> userIdList = new ArrayList<Long>();
-		for (Long userId : userIdList) {
-			userIdList.add(userId);
+		for (AccountStatementBean accountStatement : withdrawResult.getStatementList()) {
+			userIdList.add(accountStatement.getUserId());
 		}
 		resultResp = userAccountService.updateBatchUserWithdraw(day, withdrawResult.getStatementList());
 		if (!ResultResp.isSuccess(resultResp)) 

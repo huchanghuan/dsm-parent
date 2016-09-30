@@ -9,7 +9,8 @@
 		<div id="breadcrumb"> 
 	  	<a href="${basepath }/main/index" target="_top" title="首页" class="tip-bottom"><i class="icon-home"></i> 主页</a> 
 		  <a href="#" class="tip-bottom">订单处理</a> 
-		  <a href="#" class="current">用户提现</a> 
+		  <a href="#" class="tip-bottom">用户提现</a> 
+		  <a href="#" class="current">详情</a> 
 	  </div>
 	</div>
     
@@ -30,61 +31,13 @@
 <%@ include file="../global/footer.jsp" %> 
 <script type="text/javascript">
 var $table = null;
+var batchNo = "${batchNo}";
+var date = "${date}";
 $(function(){
 	
 	initTable();
 	
-	//导出excel
-	$("tr button.btn-danger").livequery(function(){
-		$(this).click(function(){
-			var index = $(this).parents("tr").data("index");
-			var dataArray = $table.bootstrapTable("getData");
-			console.log(dataArray.batchNo);
-			var batchNo = dataArray[index].batchNo;
-			var date = dataArray[index].date;
-			location.href = "${basepath}/userWithdrawReport/exportAliPayExcel?date="+date+"&batchNo="+batchNo;
-		});
-	});
-	
-	//上传EXCEL文件
-	initUpload();
 });
-
-function initUpload () {
-	$("#uploadExcel").livequery(function(){
-		
-		$(this).click(function(){
-			$("#uploadForm > input[name='file']").click();
-		});
-	});
-	
-	$("#uploadForm > input[name='file']").livequery(function(){
-		$(this).change(function(){
-			var formData = new FormData($(this).parents("form")[0]);
-			var _index = $(this).parents("tr").data("index");
-			 $.ajax({
-				 type : 'POST',
-				 data : formData,
-				 async: false,  
-		          cache: false,  
-		          contentType: false,  
-		          processData: false,  
-			 	 url : '${basepath}/userWithdrawReport/importAliPayExcel',
-			 	 success : function (json) {
-			 		if (json.code == '000000') {
-			 			$table.bootstrapTable('updateRow', {index: _index, row:{status: _status}});
-			 			W.$.alert("导入支付文件成功", 1);
-			 		} else {
-			 			W.$.alert("导入失败");
-			 		}
-			 	 },
-			 	 error: function (e) {
-			 		 W.$.alert("异常", 2);
-			 	 }
-			 });
-		});
-	});
-}
 
 function initTable() {
 	
@@ -94,28 +47,32 @@ function initTable() {
         contentType:'application/x-www-form-urlencoded',
         sidePagination:'server',
         queryParams:function(params){
-              
-               return params;
+              params.batchNo = batchNo;			//批次
+              params.date = date;				//日期
+              return params;
         },
         pagination: true,
         pageSize : 10,
         columns: [{
-        	field :'date',
-        	title : '日期'
+        	field :'idx',
+        	title : '编号'
         },{
-        	field :'batchNo',
-        	title : '批次号'
-        },{
-        	field :'userNum',
-        	title : '提现用户数'
-        },{
-        	field:'withdrawAmount',
-        	title : '提现总金额',
+        	field:'amount',
+        	title : '提现金额',
         	formatter : function (data) {
         		return "￥" + (data/100).toFixed(2);
         	}
         },{
-            field: 'statuc',
+        	field :'userId',
+        	title : '用户ID'
+        },{
+        	field :'date',
+        	title : '日期'
+        },{
+        	field : 'batchNo',
+        	title : '批次号'
+        },{
+            field: 'status',
             title: '状态',
             formatter : function (data, row, index) {
             	var html = '';

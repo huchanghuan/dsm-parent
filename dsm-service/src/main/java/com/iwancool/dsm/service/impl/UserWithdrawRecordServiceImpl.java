@@ -2,21 +2,17 @@ package com.iwancool.dsm.service.impl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import com.iwancool.dsm.common.ResultResp;
 import com.iwancool.dsm.dao.IUserWithdrawRecordDao;
 import com.iwancool.dsm.domain.UserWithdrawRecordModel;
 import com.iwancool.dsm.service.IUserWithdrawRecordService;
-import com.iwancool.dsm.utils.bean.DataGrid;
-import com.iwancool.dsm.utils.util.StringUtil;
 
 /**
  * 用户提现申请记录Service实现类

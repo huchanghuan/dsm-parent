@@ -192,7 +192,7 @@ public class UserAccountServiceImpl extends AbstractBaseService implements IUser
 
 	@Override
 	public ResultResp updateBatchUserWithdraw(int day, List<AccountStatementBean> accountStatementList) {
-		if (null != accountStatementList && !accountStatementList.isEmpty())
+		if (null == accountStatementList || accountStatementList.isEmpty())
 				return ResultResp.ERROR;
 		
 		try {
@@ -202,6 +202,7 @@ public class UserAccountServiceImpl extends AbstractBaseService implements IUser
 			for (AccountStatementBean accountStatement : accountStatementList) {
 				userAccountDao.updateUserWithdraw(startUtc, endUtc, accountStatement.getUserId(), accountStatement.getStatus());
 			}
+			return ResultResp.SUCCESS;
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

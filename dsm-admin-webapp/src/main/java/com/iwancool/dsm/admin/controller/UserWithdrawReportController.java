@@ -50,9 +50,9 @@ public class UserWithdrawReportController extends AbstractBaseController{
 	
 	@RequestMapping(value = "/toDetail")
 	public String toDetail(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		int day = ServletRequestUtils.getRequiredIntParameter(request, "day");
+		int date = ServletRequestUtils.getRequiredIntParameter(request, "date");
 		String batchNo = ServletRequestUtils.getRequiredStringParameter(request, "batchNo");
-		model.addAttribute("day", day);
+		model.addAttribute("date", date);
 		model.addAttribute("batchNo", batchNo);
 		return "userWithdrawReport/detail";
 	}
