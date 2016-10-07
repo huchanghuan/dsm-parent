@@ -23,13 +23,18 @@
 		<bean id="userWithdrawReportTask" class="com.iwancool.dsm.admin.task.UserWithdrawReportTask"></bean>
 		<task:scheduled-tasks>
 			<!--每天凌晨统计用户提现记录  -->
-			<task:scheduled ref="userWithdrawReportTask" method="execute" cron="00 00 13 * * ?"/>
+			<task:scheduled ref="userWithdrawReportTask" method="execute" cron="00 00 00 * * ?"/>
 		</task:scheduled-tasks>
 		
 		<bean id="userChopHandTask" class="com.iwancool.dsm.admin.task.UserChopHandTask" p:size="200"></bean>
 		<task:scheduled-tasks>
-			<!--每天凌晨统计用户提现记录  -->
-			<task:scheduled ref="userChopHandTask" method="execute" cron="00 13 01 * * ?"/>
+			<!--每月统计一次  -->
+			<task:scheduled ref="userChopHandTask" method="execute" cron="00 00 00 1 * ?"/>
 		</task:scheduled-tasks>
-
+	
+		<bean id="ExcelCleanUpTask" class="com.iwancool.dsm.admin.task.ExcelCleanUpTask"></bean>
+		<task:scheduled-tasks>
+			<!--每周一清理服务器Excel文件  -->
+			<task:scheduled ref="ExcelCleanUpTask" method="execute" cron="00 00 00 ? * SUN"/>
+		</task:scheduled-tasks>
 </beans>

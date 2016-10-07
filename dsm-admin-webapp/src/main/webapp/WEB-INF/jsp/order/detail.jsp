@@ -100,8 +100,8 @@
                         </tr>
                         <tr>
                           <td>商品图片</td>
-                          <td>
-                          <img picID='2131' src="http://a.broadin.cn/multimedia/album/default/97/1423cf0e0eec23df6115ec2564aa57e9.jpg@1e_100w_100h_1c_0i_1o_100Q_1x.jpg">
+                          <td class="product_img">
+                          	${order.images }
                           </td>
                           <td>&nbsp;</td>
                         </tr>
@@ -146,6 +146,11 @@ $(function(){
 		$(this).html(formatUTC($(this).html(), 'yyyy-MM-dd hh:mm'));
 	});
 	
+	var images = $(".product_img");
+	var html = JSON.parse(images.html()).map(function(ele, index){
+		return '<img class="p-pic" src="' +domain+ ele + '@1e_200w_136h_1c_0i_1o_100q_100sh_1x.jpg">';
+	}).join('');
+	images.html(html);
 });
 </script>
 </body>

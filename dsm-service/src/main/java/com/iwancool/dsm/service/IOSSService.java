@@ -1,5 +1,6 @@
 package com.iwancool.dsm.service;
 
+import java.io.InputStream;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,6 +48,12 @@ public interface IOSSService extends IGenericService{
 	 * @since   1.0.0
 	 */
 	public Map<String, Object> upload(MultipartFile multipartFile, String type);
+	
+	/**
+	 * OSS上传阿里支付宝excel (专用)
+	 * @return
+	 */
+	public Map<String, Object> uploadAliPayExcel(InputStream inputStream, String type, String fileName);
 
 	/**
 	 * 终端上传（临时方案）

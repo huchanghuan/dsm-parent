@@ -90,7 +90,6 @@ var W = window.top;
 var $table = null;
 var limit = 20;
 var shoppeId = '${shoppeId}';
-var domain = "http://cdn.duoshoucat.com/";
 $(function(){
 	
 	initTable();

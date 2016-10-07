@@ -44,7 +44,20 @@
                         </tr> -->
                         <tr>
                           <td>状态</td>
-                          <td>${goods.status }</td>
+                          <td>
+	                          <c:if test="${goods.status == 0 }">
+	                          		<span class="label label-default">未上架</span>
+	                          </c:if>
+	                          <c:if test="${goods.status == 1 }">
+                          		<span class="label label-info">已上架</span>
+                         	 </c:if>
+                         	 <c:if test="${goods.status == 2 }">
+                          		<span class="label label-warning">已下架</span>
+                         	 </c:if>
+                         	 <c:if test="${goods.status == 0 }">
+                          		<span class="label label-success">已出售</span>
+                         	 </c:if>
+                          </td>
                           <td>&nbsp;</td>
                         </tr>
                         <tr>

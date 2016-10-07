@@ -2,6 +2,7 @@ package com.iwancool.dsm.service.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -37,8 +38,10 @@ public class OSSServiceImpl extends AbstractBaseService implements IOSSService{
 	
 	static{
 		//初始化可选文件夹
-		folders.put("picture", Folders.PICTURE_PREFIX);
-		folders.put("media", Folders.MEDIA_PREFIX);
+		folders.put(Folders.PICTURE_KEY, Folders.PICTURE_PREFIX);
+		folders.put(Folders.MEDIA_KEY, Folders.MEDIA_PREFIX);
+		folders.put(Folders.EXCEL_EXPORT_KEY, Folders.EXCEL_EXPORT_PREFIX);
+		folders.put(Folders.EXCEL_IMPORT_KEY, Folders.EXCEL_IMPORT_PREFIX);
 	}
 	
 	@Override
@@ -69,7 +72,7 @@ public class OSSServiceImpl extends AbstractBaseService implements IOSSService{
 	public Map<String, Object> upload(MultipartFile multipartFile, String type) {
 		Map<String , Object> resultMap = new HashMap<String, Object>();
 		if (null == multipartFile || null == folders.get(type)) {
-			resultMap.put("ret", ResultCode.ERROR);
+			resultMap.put("code", ResultCode.ERROR);
 			return resultMap;
 		}
 		
@@ -79,7 +82,7 @@ public class OSSServiceImpl extends AbstractBaseService implements IOSSService{
 			
 			String url = config.getProperty(CNAME_KEY) + sourceKey;
 			System.out.println(url);
-			resultMap.put("ret", ResultCode.SUCCESS);
+			resultMap.put("code", ResultCode.SUCCESS);
 			resultMap.put("url", url);
 			resultMap.put("size", multipartFile.getSize());
 		} catch (Exception e) {
@@ -109,7 +112,7 @@ public class OSSServiceImpl extends AbstractBaseService implements IOSSService{
 		try {
 			
 			for (MultipartFile file : files) {
-				String sourceKey = folders.get(file.getContentType().contains("image")?"picture":"media") + DigestUtil.md5(file.getBytes()) + "." + FilenameUtils.getExtension(file.getOriginalFilename());
+				String sourceKey = folders.get(file.getContentType().contains("image")?Folders.PICTURE_KEY:Folders.MEDIA_KEY) + DigestUtil.md5(file.getBytes()) + "." + FilenameUtils.getExtension(file.getOriginalFilename());
 				AliYunOssClient.me.upload(file.getInputStream(), sourceKey);
 				
 				resultMap.put("code", "0");
@@ -117,6 +120,26 @@ public class OSSServiceImpl extends AbstractBaseService implements IOSSService{
 			}
 		} catch (Exception e) {
 			resultMap.put("code", "1");
+		}
+		return resultMap;
+	}
+
+
+	@Override
+	public Map<String, Object> uploadAliPayExcel(InputStream inputStream, String type, String fileName) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		if (null == inputStream )
+			resultMap.put("code", ResultCode.ERROR);
+		try {
+			String sourceKey = folders.get(type) + fileName;
+			AliYunOssClient.me.upload(inputStream, sourceKey);
+			
+			String url = config.getProperty(CNAME_KEY) + sourceKey;
+			System.out.println(url);
+			resultMap.put("code", ResultCode.SUCCESS);
+			resultMap.put("url", url);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return resultMap;
 	}

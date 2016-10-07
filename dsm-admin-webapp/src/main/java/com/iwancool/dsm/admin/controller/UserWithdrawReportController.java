@@ -4,6 +4,7 @@ package com.iwancool.dsm.admin.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -84,7 +85,8 @@ public class UserWithdrawReportController extends AbstractBaseController{
 	public void exportAliPayExcel (HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int date = ServletRequestUtils.getRequiredIntParameter(request, "date");
 		String batchNo = ServletRequestUtils.getRequiredStringParameter(request, "batchNo");
-		userWithdrawReportService.exportAliPayExcel(request, response, date, batchNo);
+		Map<String, Object> resultMap = userWithdrawReportService.exportAliPayExcel(request, response, date, batchNo);
+		responseDataGrid(response, resultMap);
 	}
 	
 	/**
@@ -102,7 +104,7 @@ public class UserWithdrawReportController extends AbstractBaseController{
 			return;
 		}
 			
-		ResultResp resultResp = userWithdrawReportService.importAliPayExcel(file.getInputStream());
+		ResultResp resultResp = userWithdrawReportService.importAliPayExcel(file);
 		responseDataGrid(response, resultResp);
 	}
 	

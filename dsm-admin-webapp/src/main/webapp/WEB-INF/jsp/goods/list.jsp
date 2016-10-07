@@ -98,7 +98,6 @@
 <script type="text/javascript">
 var W = window.top;
 var $table = null;
-var domain = "http://cdn.duoshoucat.com/"
 $(function(){
 	
 	//初始化表格

@@ -36,7 +36,7 @@ public class UserWithdrawReportDaoImpl extends AbstractBaseGenericORMDaoImpl<Use
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<WithdrawReportBean> findWithdrawReportList(int offset, int limit) {
-		String sql = "select uwr.date date, COUNT(uwr.idx) userNum, SUM(uwr.amount) withdrawAmount, MAX(uwr.status) statuc, uwr.batch_no batchNo from user_withdraw_report uwr group by uwr.date, uwr.batch_no order by uwr.idx limit " + offset+ "," + limit;
+		String sql = "select uwr.date date, COUNT(uwr.idx) userNum, SUM(uwr.amount) withdrawAmount, MAX(uwr.status) status, uwr.batch_no batchNo from user_withdraw_report uwr group by uwr.date, uwr.batch_no order by uwr.idx limit " + offset+ "," + limit;
 		
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(WithdrawReportBean.class));
 	}

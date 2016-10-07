@@ -37,12 +37,47 @@ $(function(){
 	//导出excel
 	$("tr button.btn-danger").livequery(function(){
 		$(this).click(function(){
+			var $this = $(this);
 			var index = $(this).parents("tr").data("index");
 			var dataArray = $table.bootstrapTable("getData");
-			console.log(dataArray.batchNo);
 			var batchNo = dataArray[index].batchNo;
 			var date = dataArray[index].date;
-			location.href = "${basepath}/userWithdrawReport/exportAliPayExcel?date="+date+"&batchNo="+batchNo;
+			//location.href = "${basepath}/userWithdrawReport/exportAliPayExcel?date="+date+"&batchNo="+batchNo;
+			$.ajax({
+				type :'POST',
+				dataType : 'JSON',
+				//async : false,
+				data :{'date' : date, 'batchNo' : batchNo},
+				url : '${basepath}/userWithdrawReport/exportAliPayExcel',
+				beforeSend : function () {
+					$this.html("正在导出...");
+					$this.attr("disabled", "disabled");
+				},
+				success : function (json) {
+					if (json.code = '000000') {
+						//创建a标签
+						var $download = $("<a></a>");
+						$download.attr("href",json.url);
+						$download.attr("download", "download");
+						$("body").append($download);
+						
+						//点击a标签下载
+						$download[0].click();
+						//$download.remove();
+						
+						$table.bootstrapTable('updateRow', {index: index, row:{status: 1}});
+					} else {
+						W.$.alert("导出失败！");
+					}
+				},
+				complete : function () {
+					$this.html("导出提现报表");
+					$this.removeAttr("disabled");
+				},
+				error : function (e) {
+					W.$.alert("出错了");
+				}
+			});
 		});
 	});
 	
@@ -64,6 +99,7 @@ function initUpload () {
 			var _index = $(this).parents("tr").data("index");
 			 $.ajax({
 				 type : 'POST',
+				 dataType : 'JSON',
 				 data : formData,
 				 async: false,  
 		          cache: false,  
@@ -72,7 +108,7 @@ function initUpload () {
 			 	 url : '${basepath}/userWithdrawReport/importAliPayExcel',
 			 	 success : function (json) {
 			 		if (json.code == '000000') {
-			 			$table.bootstrapTable('updateRow', {index: _index, row:{status: _status}});
+			 			$table.bootstrapTable('updateRow', {index: _index, row:{status: 2}});
 			 			W.$.alert("导入支付文件成功", 1);
 			 		} else {
 			 			W.$.alert("导入失败");
@@ -115,7 +151,7 @@ function initTable() {
         		return "￥" + (data/100).toFixed(2);
         	}
         },{
-            field: 'statuc',
+            field: 'status',
             title: '状态',
             formatter : function (data, row, index) {
             	var html = '';
@@ -131,7 +167,7 @@ function initTable() {
             	return html;
             }
         },{
-        	field : 'statuc',
+        	field : 'status',
         	title : '操作',
         	formatter : function (data, row, index) {
         		var html = '<div class="btn-group">';

@@ -90,6 +90,7 @@ public class UserAccountDaoImpl extends AbstractBaseGenericORMDaoImpl<UserAccoun
 			sqlQuery.setParameter("startUtc", startUtc);
 			sqlQuery.setParameter("endUtc", endUtc);
 			sqlQuery.setParameter("userId", userId);
+			sqlQuery.executeUpdate();
 		}
 	}
 

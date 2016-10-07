@@ -19,4 +19,24 @@ public interface Folders {
 	 * 其它媒资文件夹名称
 	 */
 	public static final String MEDIA_PREFIX = "media/"; 
+	
+	/**
+	 * 阿里支付宝批量付款
+	 */
+	public static final String EXCEL_EXPORT_PREFIX = "excel/export/";
+	
+	/**
+	 * 阿里支付宝批量付款结果
+	 */
+	public static final String EXCEL_IMPORT_PREFIX = "excel/import/";
+	
+
+	////////////////////////////////////////////
+	///////////////////对应的KEY
+	////////////////////////////////////////////
+	
+	public static final String PICTURE_KEY = "picture";
+	public static final String MEDIA_KEY = "media";
+	public static final String EXCEL_EXPORT_KEY = "excel_export";
+	public static final String EXCEL_IMPORT_KEY = "excel_import";
 }

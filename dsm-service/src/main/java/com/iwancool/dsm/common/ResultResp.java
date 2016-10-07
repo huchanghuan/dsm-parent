@@ -1,7 +1,6 @@
 package com.iwancool.dsm.common;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * 通用响应结果类

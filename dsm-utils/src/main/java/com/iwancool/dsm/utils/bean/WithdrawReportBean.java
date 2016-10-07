@@ -3,7 +3,7 @@ package com.iwancool.dsm.utils.bean;
 import java.io.Serializable;
 
 /**
- * 提款报表bean
+ * 提款报表bean(页面展示)
  * @author hch
  *
  */
@@ -20,7 +20,7 @@ public class WithdrawReportBean implements Serializable{
 	
 	private int withdrawAmount;    //扣除费用后的
 	
-	private int statuc;
+	private int status;
 	
 	private String batchNo;
 
@@ -48,20 +48,20 @@ public class WithdrawReportBean implements Serializable{
 		this.withdrawAmount = withdrawAmount;
 	}
 
-	public int getStatuc() {
-		return statuc;
-	}
-
-	public void setStatuc(int statuc) {
-		this.statuc = statuc;
-	}
-
 	public String getBatchNo() {
 		return batchNo;
 	}
 
 	public void setBatchNo(String batchNo) {
 		this.batchNo = batchNo;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 	

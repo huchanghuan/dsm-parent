@@ -151,7 +151,7 @@ function initUpload () {
 				alert(response.error);
 			} */
 			var json = JSON.parse(response);
-			if (json.ret == '000000') {
+			if (json.code == '000000') {
 				$("input[name='image1']").val(json.url);
 			} else {
 				W.$.alert("上传失败", 1);

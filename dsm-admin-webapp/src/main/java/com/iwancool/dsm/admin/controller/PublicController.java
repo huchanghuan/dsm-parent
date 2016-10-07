@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.iwancool.dsm.controller.AbstractBaseController;
 import com.iwancool.dsm.service.IOSSService;
+import com.iwancool.dsm.utils.util.Folders;
 
 /**
  * 公共controller
@@ -38,7 +39,7 @@ public class PublicController extends AbstractBaseController{
 	 */
 	@RequestMapping(value = "/upload")
 	public void upload(MultipartFile fileList, HttpServletRequest request, HttpServletResponse response) {
-		String type = fileList.getContentType().contains("image")?"picture":"media";
+		String type = fileList.getContentType().contains("image")?Folders.PICTURE_KEY:Folders.MEDIA_KEY;
 		Map<String, Object> resultMap = OSSService.upload(fileList, type);
 		responseDataGrid(response, resultMap);
 	}

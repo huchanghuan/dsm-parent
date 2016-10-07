@@ -139,6 +139,9 @@ public class OrderModel extends AbstractBaseModel{
 	@Formula("(select g.name from goods g where g.id = goods_id)")
 	private String goodsName;
 
+	@Formula("(select g.images from goods g where g.id = goods_id)")
+	private String images;
+	
 	public long getId() {
 		return id;
 	}
@@ -337,6 +340,14 @@ public class OrderModel extends AbstractBaseModel{
 
 	public void setGoodsName(String goodsName) {
 		this.goodsName = goodsName;
+	}
+
+	public String getImages() {
+		return images;
+	}
+
+	public void setImages(String images) {
+		this.images = images;
 	}
 	
 	

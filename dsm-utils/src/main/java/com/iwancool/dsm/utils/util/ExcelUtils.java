@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -158,7 +159,7 @@ public class ExcelUtils {
 	 * @param titleName
 	 * @return
 	 */
-	public static boolean  exportAliPayExcel(HttpServletRequest request,HttpServletResponse response,WithdrawExportBean withdrawExport, String titleName){
+	/*public static boolean  exportAliPayExcel(HttpServletRequest request,HttpServletResponse response,WithdrawExportBean withdrawExport, String titleName){
 		WritableWorkbook writeBook = null;
 		OutputStream out = null;
 		try{
@@ -182,7 +183,7 @@ public class ExcelUtils {
 				sheet.setName(titleName);
 			}
 			//3创建单元格
-			/*for(int rowIndex = 0,rowSize = withdrawExport.size(); rowIndex < rowSize;rowIndex++){
+			for(int rowIndex = 0,rowSize = withdrawExport.size(); rowIndex < rowSize;rowIndex++){
 				List<Object> rowData = withdrawExport.get(rowIndex);
 				for(int colIndex = 0, colSize = rowData.size(); colIndex < colSize;colIndex++){
 					if (rowIndex == TITLE_ROW1 || rowIndex == TITLE_ROW2) {
@@ -193,7 +194,7 @@ public class ExcelUtils {
 					sheet.setColumnView(colIndex, 20);
 					sheet.addCell(label);
 				}
-			}*/
+			}
 			writeExportData(sheet, withdrawExport);
 			
 			// 4、打开流，开始写文件
@@ -201,6 +202,36 @@ public class ExcelUtils {
 			return true;
 		}catch(Exception e){
 			return false;
+		}finally{
+			if(writeBook != null){
+				try {
+					// 5、关闭流
+					writeBook.close();
+				} catch (Exception e) {
+					
+				}
+			}
+		}
+	}*/
+	
+	public static void  exportAliPayExcel(File file, WithdrawExportBean withdrawExport, String titleName){
+		WritableWorkbook writeBook = null;
+		try{
+			
+			writeBook = Workbook.createWorkbook(new FileOutputStream(file));// 建立excel文件  
+			
+			// 2、新建工作表(sheet)对象，并声明其属于第几页
+			WritableSheet sheet = writeBook.createSheet("sheet1", 0);// 第一个参数为工作簿的名称，第二个参数为页数
+			if(titleName != null && !titleName.isEmpty()){
+				sheet.setName(titleName);
+			}
+			
+			writeExportData(sheet, withdrawExport);
+			
+			// 4、打开流，开始写文件
+			writeBook.write();
+		}catch(Exception e){
+			e.printStackTrace();
 		}finally{
 			if(writeBook != null){
 				try {
@@ -271,14 +302,14 @@ public class ExcelUtils {
 		AccountStatementBean accountStatementBean = new AccountStatementBean();
 		System.out.println("#:" + cellDatas[0].getContents());
 		accountStatementBean.setUserId(Long.valueOf(cellDatas[0].getContents()));
-		accountStatementBean.setPayeeName(cellDatas[1].getContents());
-		accountStatementBean.setPayee(cellDatas[2].getContents());
+		accountStatementBean.setPayee(cellDatas[1].getContents());
+		accountStatementBean.setPayeeName(cellDatas[2].getContents());
 		accountStatementBean.setAmount(Double.valueOf(cellDatas[3].getContents()));
 		accountStatementBean.setReason(cellDatas[4].getContents());
 		accountStatementBean.setAliPayNo(cellDatas[5].getContents());
 		accountStatementBean.setEstimatedCharge(Double.valueOf(cellDatas[6].getContents()));
 		accountStatementBean.setSuccessFees(Double.valueOf(cellDatas[7].getContents()));
-		accountStatementBean.setStatus(cellDatas[8].getContents());
+		accountStatementBean.setStatus(cellDatas[8].getContents().trim());
 		accountStatementBean.setFailReason(cellDatas[9].getContents());
 		
 		return accountStatementBean;

@@ -1,10 +1,12 @@
 package com.iwancool.dsm.service;
 
-import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.iwancool.dsm.common.ResultResp;
 import com.iwancool.dsm.domain.UserWithdrawReportModel;
@@ -38,16 +40,17 @@ public interface IUserWithdrawReportService extends IGenericService{
 	 * @Description (TODO
 	 * @param date
 	 * @param batchNo
+	 * @return 
 	 */
-	public void exportAliPayExcel(HttpServletRequest request, HttpServletResponse response, int date, String batchNo);
+	public Map<String, Object> exportAliPayExcel(HttpServletRequest request, HttpServletResponse response, int date, String batchNo);
 
 	/**
 	 * 导入支付宝提现Excel
 	 * @Description (TODO
-	 * @param inputStream
+	 * @param file
 	 * @return
 	 */
-	public ResultResp importAliPayExcel(InputStream inputStream);
+	public ResultResp importAliPayExcel(MultipartFile file);
 
 	/**
 	 * 查找指定天、批次的提现记录
